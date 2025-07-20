@@ -1,6 +1,7 @@
 {
   "name": "reactjs-household-bills-app",
   "version": "0.1.0",
+  "homepage": "https://bkahl1984.github.io/reactjs-household-bills-app/",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
