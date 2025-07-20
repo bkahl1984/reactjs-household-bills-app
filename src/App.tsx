@@ -8,15 +8,12 @@ const App = () => {
     async function fetchData() {
       try {
         // ✅ Replace this with your public Google Sheets JSON endpoint:
-        const sheetId = '1--pNuKjUSUGI_Uhbh-fC4KzZKpulLJcIsFotFoQ29Wc';
-        const range = 'Expenses';
-        const apiKey = 'AIzaSyBI6lbOHxGCgTYSlAO4gSH5g6BgxNAlboU';
+        const sheetId = process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEET_ID;
+        const range = process.env.REACT_APP_GOOGLE_SPREADSHEET_RANGE;
+        const apiKey = process.env.REACT_APP_GOOGLE_SPREADSHEET_API_KEY;
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-
         const res = await fetch(url);
         const data = await res.json();
-
-        console.log('Fetched data:', data);
 
         setRows(data.values || []);
       } catch (error) {
