@@ -78,8 +78,8 @@ const App = () => {
                     }}
                   >
                     {cellIndex === 0 && cell}
-                    {cell === 'NaN' && '-'}
-                    {cellIndex > 0 && nextRow !== undefined && cell !== 'NaN' &&
+                    {cell === '' && '-'}
+                    {cellIndex > 0 && nextRow !== undefined && cell !== '' &&
                       <span>
                         {cell} <span style={{
                           color: nextValueFixed.includes('-') || nextValueFixed === "0.00" ? 'green' : 'red',
