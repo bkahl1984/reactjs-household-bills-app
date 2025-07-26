@@ -78,6 +78,7 @@ const App = () => {
                     }}
                   >
                     {cellIndex === 0 && cell}
+                    {cell === 'NaN' && '-'}
                     {cellIndex > 0 && nextRow !== undefined && cell !== 'NaN' &&
                       <span>
                         {cell} <span style={{
@@ -85,7 +86,7 @@ const App = () => {
                           fontWeight: 'bold'
                         }}>
                           {nextValueFixed.includes('-') || nextValueFixed === "0.00" ? '' : '+'}
-                          {nextValueFixed}
+                          {row.toString().split(",")[0] !== 'January 2025' && nextValueFixed}
                         </span>
                       </span>
                     }
