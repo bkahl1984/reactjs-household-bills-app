@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/reactjs-household-bills-app/static/css/main.05713673.css",
-    "main.js": "/reactjs-household-bills-app/static/js/main.e6aa3e3e.js",
+    "main.js": "/reactjs-household-bills-app/static/js/main.0dc2d52e.js",
     "static/js/453.c1cdced2.chunk.js": "/reactjs-household-bills-app/static/js/453.c1cdced2.chunk.js",
     "index.html": "/reactjs-household-bills-app/index.html",
     "main.05713673.css.map": "/reactjs-household-bills-app/static/css/main.05713673.css.map",
-    "main.e6aa3e3e.js.map": "/reactjs-household-bills-app/static/js/main.e6aa3e3e.js.map",
+    "main.0dc2d52e.js.map": "/reactjs-household-bills-app/static/js/main.0dc2d52e.js.map",
     "453.c1cdced2.chunk.js.map": "/reactjs-household-bills-app/static/js/453.c1cdced2.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.05713673.css",
-    "static/js/main.e6aa3e3e.js"
+    "static/js/main.0dc2d52e.js"
   ]
 }
