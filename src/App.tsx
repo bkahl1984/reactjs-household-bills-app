@@ -11,9 +11,8 @@ const App = () => {
 
   // ✅ Replace this with your public Google Sheets JSON endpoint:
   const sheetId = process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEET_ID;
-  const sheets = JSON.parse(process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEETS || "[]");
   const apiKey = process.env.REACT_APP_GOOGLE_SPREADSHEET_API_KEY;
-
+  const sheets = JSON.parse(process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEETS || "[]");
   const currentYearIndex = getCurrentYearIndex(sheets);
   const [selectedYear, setSelectedYear] = useState<string>(sheets[currentYearIndex]); // default to current year
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -33,7 +32,7 @@ const App = () => {
       }
     }
     fetchData();
-  }, [selectedYear]);
+  }, [sheetId, apiKey, selectedYear]);
 
   if (rows.length === 0) return <p>Loading...</p>;
 
