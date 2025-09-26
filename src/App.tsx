@@ -1,18 +1,29 @@
 'use client';
 import { useEffect, useState } from 'react';
 
+const getCurrentYearIndex = (years: string[]): number => {
+  const currentYear: string = new Date().getFullYear().toString();
+  return years.indexOf(currentYear); // returns -1 if not found
+};
+
 const App = () => {
   const [rows, setRows] = useState<string[][]>([]);
+
+  // ✅ Replace this with your public Google Sheets JSON endpoint:
+  const sheetId = process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEET_ID;
+  const sheets = JSON.parse(process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEETS || "[]");
+  const apiKey = process.env.REACT_APP_GOOGLE_SPREADSHEET_API_KEY;
+
+  const currentYearIndex = getCurrentYearIndex(sheets);
+  const [selectedYear, setSelectedYear] = useState<string>(sheets[currentYearIndex]); // default to current year
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedYear(event.target.value);
+  };
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // ✅ Replace this with your public Google Sheets JSON endpoint:
-        const sheetId = process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEET_ID;
-        //const range = JSON.parse(process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEETS || "[]")
-        const range = process.env.REACT_APP_GOOGLE_SPREADSHEET_RANGE;
-        const apiKey = process.env.REACT_APP_GOOGLE_SPREADSHEET_API_KEY;
-        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+        const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${selectedYear}?key=${apiKey}`;
         const res = await fetch(url);
         const data = await res.json();
 
@@ -22,7 +33,7 @@ const App = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [selectedYear]);
 
   if (rows.length === 0) return <p>Loading...</p>;
 
@@ -31,8 +42,22 @@ const App = () => {
 
   return (
     <div style={{ padding: '40px', fontFamily: 'Arial, sans-serif' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Monthly Utilities Overview</h1>
+      <h1 style={{ textAlign: 'center', marginBottom: '20px', color: 'white' }}>Monthly Utilities Overview</h1>
       
+      <br />
+
+      <div>
+        <label htmlFor="year-select" style={{color: 'white'}}>Choose a year: </label>
+        <select id="year-select" value={selectedYear} onChange={handleChange}>
+          {sheets.map((sheet: string) => (
+            <option key={sheet} value={sheet}>
+              {sheet}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <br />
       <table style={{ borderCollapse: 'collapse', width: '100%' }}>
         <thead>
           <tr>
