@@ -9,6 +9,7 @@ const App = () => {
       try {
         // ✅ Replace this with your public Google Sheets JSON endpoint:
         const sheetId = process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEET_ID;
+        //const range = JSON.parse(process.env.REACT_APP_GOOGLE_SPREADSHEET_SHEETS || "[]")
         const range = process.env.REACT_APP_GOOGLE_SPREADSHEET_RANGE;
         const apiKey = process.env.REACT_APP_GOOGLE_SPREADSHEET_API_KEY;
         const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
